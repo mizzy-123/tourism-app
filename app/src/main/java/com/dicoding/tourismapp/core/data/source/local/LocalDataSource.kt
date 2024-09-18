@@ -5,17 +5,18 @@ import com.dicoding.tourismapp.core.data.source.local.entity.TourismEntity
 import com.dicoding.tourismapp.core.data.source.local.room.TourismDao
 import io.reactivex.Flowable
 import kotlinx.coroutines.flow.Flow
+import javax.inject.Inject
 
-class LocalDataSource private constructor(private val tourismDao: TourismDao) {
+class LocalDataSource @Inject constructor(private val tourismDao: TourismDao) {
 
-    companion object {
-        private var instance: LocalDataSource? = null
-
-        fun getInstance(tourismDao: TourismDao): LocalDataSource =
-            instance ?: synchronized(this) {
-                instance ?: LocalDataSource(tourismDao)
-            }
-    }
+//    companion object {
+//        private var instance: LocalDataSource? = null
+//
+//        fun getInstance(tourismDao: TourismDao): LocalDataSource =
+//            instance ?: synchronized(this) {
+//                instance ?: LocalDataSource(tourismDao)
+//            }
+//    }
 
     fun getAllTourism(): Flow<List<TourismEntity>> = tourismDao.getAllTourism()
 
